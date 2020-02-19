@@ -11,6 +11,17 @@
 |
 */
 
+use App\Article;
+
 Route::get('/', function () {
+//    \App\Article::createIndex($shards = null, $replicas = null);
+//    \App\Article::putMapping($ignoreConflicts = true);
+//    \App\Article::addAllToIndex();
+    \App\Article::reindex();
+
     return view('welcome');
+});
+
+Route::get('/search', function () {
+    return \App\Article::searchByQuery(['match' => ['title' => 'Sed']]);
 });
